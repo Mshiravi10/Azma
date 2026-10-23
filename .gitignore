@@ -1,0 +1,54 @@
+# .NET
+bin/
+obj/
+TestResults/
+*.user
+*.suo
+.vs/
+.vscode/*
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Rider
+.idea/
+
+# Node
+node_modules/
+dist/
+build/
+.vite/
+.turbo/
+*.tsbuildinfo
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Generated JavaScript emitted beside TypeScript sources
+src/Web/azma-web/src/**/*.js
+src/Web/azma-web/vite.config.js
+src/Web/azma-web/public/downloads/recorder/*.zip
+src/Web/azma-web/public/downloads/recorder/*.zip.sha256
+
+# Env / secrets
+.env*
+!.env.example
+appsettings.*.local.json
+*.pfx
+*.pem
+*.key
+secrets.json
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Docker volumes (local)
+.data/
+
+# Local tooling and verification outputs
+artifacts/
+.codebase-memory/
+.claude/settings.json

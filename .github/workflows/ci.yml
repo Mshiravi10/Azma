@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    name: Backend build and tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+
+      - name: Restore
+        run: dotnet restore Azma.sln
+
+      - name: Build
+        run: dotnet build Azma.sln --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test Azma.sln --configuration Release --no-build --logger "console;verbosity=normal"
+
+  frontend:
+    name: Frontend lint and builds
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22.13.1
+          cache: npm
+          cache-dependency-path: src/Web/azma-web/package-lock.json
+
+      - name: Install dependencies
+        working-directory: src/Web/azma-web
+        run: npm ci
+
+      - name: Audit production dependencies
+        working-directory: src/Web/azma-web
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Lint
+        working-directory: src/Web/azma-web
+        run: npm run lint
+
+      - name: Build web application
+        working-directory: src/Web/azma-web
+        run: npm run build
+
+      - name: Build recorder extensions
+        working-directory: src/Web/azma-recorder-extension
+        run: npm run build
