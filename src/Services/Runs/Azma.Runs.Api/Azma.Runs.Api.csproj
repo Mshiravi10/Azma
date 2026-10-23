@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Azma.Runs.Api</RootNamespace>
+    <UserSecretsId>azma-runs</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="FluentValidation" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+    <PackageReference Include="Mapster" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Sinks.Console" />
+    <PackageReference Include="Serilog.Sinks.Seq" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+    <PackageReference Include="AspNetCore.HealthChecks.NpgSql" />
+    <PackageReference Include="AspNetCore.HealthChecks.Rabbitmq" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Azma.Common\Azma.Common.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Azma.Auth\Azma.Auth.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Azma.Automation\Azma.Automation.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Azma.EventBus\Azma.EventBus.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Azma.Storage\Azma.Storage.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Azma.UserDirectory\Azma.UserDirectory.csproj" />
+  </ItemGroup>
+</Project>

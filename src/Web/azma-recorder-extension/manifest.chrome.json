@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Azma Recorder",
+  "description": "Builds human-readable and executable Azma scenarios in the page being tested.",
+  "version": "0.2.0",
+  "permissions": ["storage", "tabs", "scripting"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["azmaBridge.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["targetRecorder.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["pageHook.js", "overlay.css"],
+      "matches": ["http://*/*", "https://*/*"]
+    }
+  ],
+  "action": {
+    "default_title": "Azma Recorder"
+  }
+}
